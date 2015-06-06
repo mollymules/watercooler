@@ -31,6 +31,10 @@ def api_search(searchTerm):
 
     return xml2json.xml2json(ET.tostring(root),make_options(True))
 
+@app.route('/getShows')
+def get_all_shows():
+    return ''
+
 def get_show(id):
     requestURL = 'http://services.tvrage.com/feeds/full_show_info.php?sid=' + id
     root = ET.parse(urllib.urlopen(requestURL)).getroot()

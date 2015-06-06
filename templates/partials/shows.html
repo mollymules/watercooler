@@ -1,0 +1,12 @@
+<div ng-init="getAllShows()">
+    <div ng-cloak>
+        <div ng-repeat="show in allShows">
+            <img src="{{show.image}}" title="show.name" />
+            <h2>{{show.name}}</h2>
+            <div ng-repeat="person in show.people">
+                <img src="{{person.image}}" title="person.name" />
+            </div>
+        </div>
+        <button>Add Shows</button>
+    </div>
+</div>
