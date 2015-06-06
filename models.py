@@ -14,3 +14,19 @@ class Show(db.Model):
             'id': self.id,
             'image': self.image,
         }
+        
+class Episode(db.Model):
+    epnum = db.StringProperty(required=True)
+    seasonnum = db.StringProperty(required=True)
+    title = db.StringProperty(required=True)
+    showid = db.StringProperty(required=True)
+    screencap = db.StringProperty()
+
+    def serialize(self):
+        return {
+            'epnum': self.epnum, 
+            'seasonnum': self.seasonnum,
+            'title': self.title,
+            'showid': self.showid,
+            'screencap': self.screencap
+        }        
