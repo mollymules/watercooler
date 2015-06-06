@@ -131,7 +131,7 @@ def api_show(id):
         dict = json.loads(show)['Show'];
         s = models.Show(name=dict['name'],
              id = id,
-             image=dict['image'])
+             image=  dict['image'] if 'image' in dict else '')
         s.put()
         
         seasons = dict['Episodelist']

@@ -21,7 +21,7 @@ class Person(db.Model):
 class Show(db.Model):
     name = db.StringProperty(required=True)
     id = db.StringProperty(required=True)
-    image = db.StringProperty(required=True)
+    image = db.StringProperty()
 
     def serialize(self):
         return {
