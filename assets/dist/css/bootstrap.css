@@ -1255,23 +1255,23 @@ h6 .small,
 }
 h1,
 .h1 {
-  font-size: 36px;
+  font-size: 21px;
 }
 h2,
 .h2 {
-  font-size: 30px;
+  font-size: 14px;
 }
 h3,
 .h3 {
-  font-size: 24px;
+  font-size: 14px;
 }
 h4,
 .h4 {
-  font-size: 18px;
+  font-size: 14px;
 }
 h5,
 .h5 {
-  font-size: 14px;
+  font-size: 12px;
 }
 h6,
 .h6 {
@@ -6547,19 +6547,30 @@ button.close {
     display: none !important;
   }
 }
+h1 {
+  font-size: 21px;
+  color: #fff;
+}
+h2 {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #e15ca7;
+  font-style: italic;
+}
+h3 {
+  font-size: 14px;
+  color: #c3c3c3;
+}
 header {
   background: #e15ca7;
   text-align: center;
 }
-header.darker {
+.action-block-dark {
   background: #222222;
+  display: block;
+  text-align: center;
 }
-header.darker h3 {
-  color: #c3c3c3;
-  font-size: 1em;
-  font-style: italic;
-}
-header.darker h3 span {
+.action-block-dark h3 span {
   font-size: 1em;
   margin-right: 15px;
 }
@@ -6576,8 +6587,23 @@ header.darker h3 span {
 .listing img {
   margin-right: 15px;
   position: absolute;
+  width: 100px;
+  heighT: auto;
 }
 .listing .listing-content {
   margin-left: 115px;
+}
+.listing .listing-content .people span {
+  width: 50px;
+  height: 50px;
+  float: left;
+  border-radius: 100%;
+  overflow: hidden;
+  margin-right: 15px;
+}
+.listing .listing-content .people span img {
+  position: relative;
+  width: 100%;
+  height: auto;
 }
 /*# sourceMappingURL=bootstrap.css.map */
