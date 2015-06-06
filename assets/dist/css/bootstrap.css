@@ -6547,6 +6547,12 @@ button.close {
     display: none !important;
   }
 }
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0 0;
+}
 h1 {
   font-size: 21px;
   color: #fff;
@@ -6570,13 +6576,26 @@ header {
   display: block;
   text-align: center;
 }
+.action-block-dark h3 {
+  padding: 15px 0;
+  cursor: pointer;
+}
 .action-block-dark h3 span {
   font-size: 1em;
   margin-right: 15px;
+  color: #e15ca7;
 }
 .search-bar {
   padding: 15px 0;
   border-bottom: 1px solid #3b3b3b;
+}
+.search-bar button {
+  background: none;
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  outline: none;
+  border: 0;
 }
 .listing {
   border-top: 1px solid #4b4b4b;
