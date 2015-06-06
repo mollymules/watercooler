@@ -78,7 +78,7 @@ watercooler.controller('peopleCtrl', ['$scope', '$routeParams', 'tvService', fun
     });
 
     tvService.getPeople().then(function (result) {
-        $scope.people = result;
+        $scope.people = result.eqtls;
     });
 
     var selectedPeople = []
@@ -86,7 +86,6 @@ watercooler.controller('peopleCtrl', ['$scope', '$routeParams', 'tvService', fun
     $scope.addPerson = function (person) {
         person.isAdded = true;
         selectedPeople.push(person.id);
-        console.log($scope);
     }
 
     $scope.removePerson = function (person) {
@@ -134,11 +133,18 @@ watercooler.service('tvService', ['$q', '$http', function ($q, $http) {
 
     this.getPeople = function (showId) {
         var deferred = $q.defer();
-        setTimeout(function () {
-
-            deferred.resolve([{ id: '1', name: 'Mary', image: 'http://images.tvrage.com/shows/3/2930.jpg' }, { id: '2', name: 'Sheila', image: 'http://images.tvrage.com/shows/3/2930.jpg' }]);
-
-        }, 1000);
+        var apiUrl;
+        if (typeof (showId) != 'undefined') {
+            apiUrl = '//' + window.location.host + '/people/' + showId;
+        }else{
+            apiUrl = '//' + window.location.host + '/people';
+        }
+     
+        $http.get(apiUrl).success(function (data) {
+            deferred.resolve(data);
+        }).error(function () {
+            deferred.reject('None found');
+        });
         return deferred.promise;
     }
 
