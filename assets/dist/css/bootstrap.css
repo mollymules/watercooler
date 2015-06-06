@@ -6612,6 +6612,9 @@ header {
 .listing .listing-content {
   margin-left: 115px;
 }
+.listing .listing-content h2 {
+  padding-bottom: 10px;
+}
 .listing .listing-content .people span {
   width: 50px;
   height: 50px;
