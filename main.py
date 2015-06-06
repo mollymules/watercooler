@@ -3,11 +3,13 @@ import sys
 import urllib
 import json
 import xml2json
+import models
 from xml.etree import ElementTree as ET
+from google.appengine.ext import db
 
 sys.path.insert(1, os.path.join(os.path.abspath('.'), 'lib'))
 
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, request, jsonify
 app = Flask(__name__)
 
 class Options(object):
@@ -42,15 +44,19 @@ def get_show(id):
 
 @app.route('/show/<id>', methods=['GET','POST'])
 def api_show(id):
-    show = get_show(id);
-    if request.method == 'Get':
-        return show
+    if request.method == 'GET':
+        q = db.Query(models.Show)
+        q.filter('id =', id)
+        s = q.get()
+        return jsonify(name=s.name, id=s.id, image=s.image)
     else:
-        dict = jsons.loads(show);
-        s = Show(name=dict['name'],
-             id = dict['id'],
+        show = get_show(id);
+        dict = json.loads(show)['Show'];
+        s = models.Show(name=dict['name'],
+             id = id,
              image=dict['image'])
         s.put()
+        return jsonify(name=s.name, id=s.id, image=s.image)
     
     
 
