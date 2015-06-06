@@ -1,6 +1,4 @@
-angular.module('watercooler', [
-  'ui.router'
-]);
+var watercooler = angular.module('watercooler', ['ngRoute']);
 
 watercooler.config(function ($routeProvider) {
     $routeProvider

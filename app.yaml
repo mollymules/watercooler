@@ -22,7 +22,7 @@ handlers:
   static_dir: assets/js
   
 - url: /images
-  static_dir: images
+  static_dir: assets/images
 
 
 - url: /.*
