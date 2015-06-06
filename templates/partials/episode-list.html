@@ -3,9 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <ul>
-                    <li><span class="fa fa-bars"></span></li>
-                </ul>
+                <span class="r fa fa-arrow-left"></span>
                 <h1>Episode List</h1>
             </div>
         </div>
@@ -13,10 +11,10 @@
 </header>
 
 
-<section class="show featured">
+<section class="show">
 	<div class="container-fluid">
         <!-- What show? -->
-        <div class="listing">
+        <div class="listing featured">
             <div class="row">
                 <div class="col-md-12">
                     <img ng-src="http://images.tvrage.com/shows/3/{{show.showid}}.jpg" />
@@ -36,19 +34,20 @@
     <div class="container-fluid">
         <!-- Repeatable Episodes listing -->
         <div class="listing episodes">
-            <div class="row">
-                <div class="col-md-12">
-                    
-                    <div class="listing-content">
-                        <h2>Episode Name</h2>
-                        <div class="people">
-                            <span>
-                                <img src="{{person.image}}" title="person.name" />
-                            </span>
+            <a href="">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="listing-content">
+                            <h2>Episode Name</h2>
+                            <div class="people">
+                                <span>
+                                    <img src="{{person.image}}" title="person.name" />
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         <!-- End -->  
     </div>
