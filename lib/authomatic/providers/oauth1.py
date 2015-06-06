@@ -654,11 +654,6 @@ class Twitter(OAuth1):
         user.locale = data.get('lang')
         user.link = data.get('url')
 
-        _location = data.get('location', '')
-        if _location:
-            _city, _country = _location.split(',')
-            user.city = _city.strip()
-            user.country = _country.strip()
         return user
 
 
