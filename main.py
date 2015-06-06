@@ -50,7 +50,12 @@ def api_show(id):
         q = db.Query(models.Show)
         q.filter('id =', id)
         s = q.get()
-        return jsonify(name=s.name, id=s.id, image=s.image)
+        
+        if s is None:
+            show = get_show(id);
+            return show
+        else:
+            return jsonify(name=s.name, id=s.id, image=s.image)
     else:
         show = get_show(id);
         dict = json.loads(show)['Show'];
@@ -58,6 +63,21 @@ def api_show(id):
              id = id,
              image=dict['image'])
         s.put()
+        
+        seasons = dict['Episodelist']
+        seasonList = [seasons['Season']] if type(seasons['Season']) is type({}) else seasons['Season'];
+        
+        for season in seasonList:
+            episodeList = [season['episode']] if type(season['episode']) is type({}) else season['episode'];
+            
+            for episode in episodeList:
+                e = models.Episode(title=episode['title'], 
+                    showid = id,
+                    epnum=episode['epnum'],
+                    seasonnum=episode['seasonnum'],
+                    screencap= episode['screencap'] if 'screencap' in episode else '')
+                e.put()
+                 
         return jsonify(name=s.name, id=s.id, image=s.image)
     
     
