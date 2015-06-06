@@ -9,6 +9,8 @@ from google.appengine.ext import db
 from google.appengine.api import users
 
 sys.path.insert(1, os.path.join(os.path.abspath('.'), 'lib'))
+from google.appengine.api import urlfetch
+urlfetch.set_default_fetch_deadline(60)
 
 from authomatic.adapters import WerkzeugAdapter
 from authomatic import Authomatic
