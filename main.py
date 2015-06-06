@@ -9,7 +9,7 @@ from google.appengine.ext import db
 
 sys.path.insert(1, os.path.join(os.path.abspath('.'), 'lib'))
 
-from flask import Flask, url_for, render_template, request, jsonify
+from flask import Flask, url_for, render_template, request, jsonify, Response
 app = Flask(__name__)
 
 class Options(object):
@@ -35,7 +35,9 @@ def api_search(searchTerm):
 
 @app.route('/getShows')
 def get_all_shows():
-    return ''
+    q = db.Query(models.Show)
+    s = q.fetch(100)
+    return jsonify(eqtls=[e.serialize() for e in s])
 
 def get_show(id):
     requestURL = 'http://services.tvrage.com/feeds/full_show_info.php?sid=' + id
