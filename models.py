@@ -27,6 +27,6 @@ class Episode(db.Model):
             'epnum': self.epnum, 
             'seasonnum': self.seasonnum,
             'title': self.title,
-            'showId': self.showId,
+            'showid': self.showid,
             'screencap': self.screencap
         }        

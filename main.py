@@ -39,6 +39,12 @@ def get_all_shows():
     s = q.fetch(100)
     return jsonify(eqtls=[e.serialize() for e in s])
 
+@app.route('/getEpisodes')
+def get_all_episodes():
+    q = db.Query(models.Episode)
+    s = q.fetch(100)
+    return jsonify(eqtls=[e.serialize() for e in s])
+    
 def get_show(id):
     requestURL = 'http://services.tvrage.com/feeds/full_show_info.php?sid=' + id
     root = ET.parse(urllib.urlopen(requestURL)).getroot()
