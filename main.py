@@ -101,6 +101,19 @@ def get_show(id):
     root = ET.parse(urllib.urlopen(requestURL)).getroot()
     return xml2json.xml2json(ET.tostring(root),make_options(True))
 
+@app.route('/people')
+def all_people():
+    q = db.Query(models.Person)
+    s = q.fetch(100)
+    return jsonify(eqtls=[e.serialize() for e in s])
+
+
+@app.route('/people/<showid>')
+def people(showid):
+    q = db.Query(models.Person)
+    s = q.fetch(100)
+    return jsonify(eqtls=[e.serialize() for e in s])
+
 @app.route('/show/<id>', methods=['GET','POST'])
 def api_show(id):
     if request.method == 'GET':
