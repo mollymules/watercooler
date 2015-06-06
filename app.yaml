@@ -24,6 +24,8 @@ handlers:
 - url: /images
   static_dir: assets/images
 
+- url: /templates
+  static_dir: templates/partials
 
 - url: /.*
   script: main.app
