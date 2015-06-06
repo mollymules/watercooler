@@ -1,6 +1,7 @@
 import os
 import sys
 import urllib
+import json
 import xml2json
 from xml.etree import ElementTree as ET
 
@@ -30,13 +31,24 @@ def api_search(searchTerm):
 
     return xml2json.xml2json(ET.tostring(root),make_options(True))
 
-@app.route('/show/<id>')
-def api_show(id):
+def get_show(id):
     requestURL = 'http://services.tvrage.com/feeds/full_show_info.php?sid=' + id
     root = ET.parse(urllib.urlopen(requestURL)).getroot()
-
     return xml2json.xml2json(ET.tostring(root),make_options(True))
 
+@app.route('/show/<id>', methods=['GET','POST'])
+def api_show(id):
+    show = get_show(id);
+    if request.method == 'Get':
+        return show
+    else:
+        dict = jsons.loads(show);
+        s = Show(name=dict['name'],
+             id = dict['id'],
+             image=dict['image'])
+        s.put()
+    
+    
 
 if __name__ == '__main__':
     app.run()
