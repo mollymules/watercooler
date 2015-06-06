@@ -3,6 +3,10 @@ var watercooler = angular.module('watercooler', ['ngRoute']);
 watercooler.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+          templateUrl: 'templates/index.html',
+          controller: 'mainCtrl'
+      })
+      .when('/', {
           templateUrl: 'templates/search.html',
           controller: 'mainCtrl'
       })

@@ -6,11 +6,22 @@ import xml2json
 import models
 from xml.etree import ElementTree as ET
 from google.appengine.ext import db
+from google.appengine.api import users
 
 sys.path.insert(1, os.path.join(os.path.abspath('.'), 'lib'))
 
-from flask import Flask, url_for, render_template, request, jsonify, Response
+from authomatic.adapters import WerkzeugAdapter
+from authomatic import Authomatic
+
+from config import CONFIG
+
+
+from flask import Flask, url_for, render_template, request, jsonify, make_response, Response, redirect
 app = Flask(__name__)
+
+# Instantiate Authomatic.
+authomatic = Authomatic(CONFIG, 'your secret string', report_errors=False)
+
 
 class Options(object):
     pretty = False
@@ -20,11 +31,49 @@ def make_options(pretty):
     options.pretty = pretty
     return options
 
-
-
 @app.route('/')
-def index(name=None):
+def index():
+    return render_template('index.html')
+
+@app.route('/main')
+def main():
     return render_template('main.html')
+
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+    """
+    Login handler, must accept both GET and POST to be able to use OpenID.
+    """
+    
+    # We need response object for the WerkzeugAdapter.
+    response = make_response()
+    
+    # Log the user in, pass it the adapter and the provider name.
+    result = authomatic.login(WerkzeugAdapter(request, response), 'tw')
+    
+    # If there is no LoginResult object, the login procedure is still pending.
+    if result:
+        if result.user:
+            # We need to update the user to get more info.
+            result.user.update()
+         
+        q = db.Query(models.Person)
+        q.filter('id =', result.user.id)
+        p = q.get()
+        
+        if p is None:            
+            p = models.Person(name=result.user.name,
+                 id = result.user.id,
+                 username = result.user.username,
+                 picture = result.user.picture,             
+                 watched=False)
+            p.put()
+                
+        return redirect('/main')
+    
+    # Don't forget to return the response.
+    return response
+    
 
 @app.route('/search/<searchTerm>')
 def api_search(searchTerm):
@@ -86,7 +135,10 @@ def api_show(id):
                  
         return jsonify(name=s.name, id=s.id, image=s.image)
     
-    
+
+
+
+
 
 if __name__ == '__main__':
     app.run()
