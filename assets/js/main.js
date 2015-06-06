@@ -17,6 +17,10 @@ watercooler.config(function ($routeProvider) {
         })
         .when('/episodes/:showID', {
             templateUrl: 'templates/episode-list.html',
+            controller: 'episodesCtrl'
+        })
+        .when('/episode/:showID/:season/:episode', {
+            templateUrl: 'templates/episode.html',
             controller: 'episodeCtrl'
         })
       .otherwise({
@@ -40,15 +44,30 @@ watercooler.controller('mainCtrl', ['$scope', '$q', 'tvService', function ($scop
     }
 }]);
 
+watercooler.controller('episodesCtrl', ['$scope', '$q', '$routeParams', 'tvService', function ($scope, $q, $routeParams, tvService) {
+
+    $scope.showId = $routeParams.showID;
+    
+    tvService.getShow($scope.showId).then(function (result) {
+        $scope.showDetail = result.Show;
+    });
+
+
+    tvService.getEpisodes($scope.showId).then(function (result) {
+        $scope.episodes = result;
+    });
+    
+}]);
+
 watercooler.controller('episodeCtrl', ['$scope', '$q', '$routeParams', 'tvService', function ($scope, $q, $routeParams, tvService) {
 
     $scope.showId = $routeParams.showID;
+    $scope.season = $routeParams.season;
+    $scope.episode = $routeParams.episode;
 
-    $scope.getEpisodes = function () {
-        tvService.getEpisodes().then(function (result) {
-            $scope.episodes = result;
-        });
-    }
+    tvService.getShow($scope.showId, $scope.season,$scope.episode).then(function (result) {
+        $scope.episode = result.result;
+    });
 }]);
 
 watercooler.controller('peopleCtrl', ['$scope', '$routeParams', 'tvService', function ($scope, $routeParams, tvService) {
