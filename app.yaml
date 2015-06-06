@@ -1,0 +1,5 @@
+application: watercooler-996
+
+handlers:
+- url: /.*
+  script: helloworld.app
