@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<h3><span class="glyphicon glyphicon-plus"></span>Add a show</h3>
+				<h3><span class="glyphicon glyphicon-plus" ></span>Add a show</h3>
 			</div>
 		</div>
 	</div>
@@ -13,7 +13,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="search-bar">
-					<input type="text" class="form-control" placeholder="Search for a show ..." />
+                    <input type="text" class="form-control" ng-model="textBoxInput"  placeholder="Search for a show ..." />
+                    <button class="glyphicon glyphicon-search" ng-disabled="textBoxInput.length == 0" ng-click="searchShows()"></button>
 				</div>
 			</div>
 		</div>
@@ -22,16 +23,18 @@
 
 <section class="search-listing">
 	<div class="container-fluid">
-		<div class="listing">
-			<div class="row">
-				<div class="col-md-12">
-					<img src="http://placehold.it/100x130"/>
-					<div class="listing-content">
-						<h3>Show title</h3>
-						<p>Show details</p>
-					</div>
-				</div>
-			</div>
-		</div>
+        <div class="listing" ng-repeat="show in searchResults">
+            <div class="row">
+                <div class="col-md-12">
+                    <img ng-src="http://images.tvrage.com/shows/3/{{show.showid}}.jpg" />
+                        <div class="listing-content">
+                            <h3>{{show.name}}</h3>
+                            <p>{{show.status}}</p>
+                            <p>{{show.seasons}} seasons</p>
+                        </div>
+      
+                </div>
+            </div>
+        </div>
 	</div>
 </section>

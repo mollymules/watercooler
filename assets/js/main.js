@@ -23,11 +23,10 @@ watercooler.controller('mainCtrl', ['$scope', '$q', 'tvService', function ($scop
 
     $scope.searchShows = function () {
         tvService.searchShows($scope.textBoxInput).then(function (result) {
-            $scope.searchResults = result;
+            $scope.searchResults = result.Results.show;
+            console.log($scope.searchResults);
         });
     }
-    $scope.textBoxInput = 'buff';
-    $scope.searchShows();
 }]);
 
 watercooler.service('tvService', ['$q', '$http', function ($q, $http) {
