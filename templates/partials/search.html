@@ -10,32 +10,33 @@
 </div>
 
 <section class="main-content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="search-bar">
-                    <input type="text" class="form-control" ng-model="textBoxInput"  placeholder="Search for a show ..." />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="search-bar">
+                    <input type="text" class="form-control" ng-model="textBoxInput" placeholder="Search for a show ..." />
                     <button class="fa fa-search" ng-disabled="textBoxInput.length == 0" ng-click="searchShows()"></button>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="search-listing">
-	<div class="container-fluid">
+    <div class="container-fluid">
         <div class="listing" ng-repeat="show in searchResults">
             <div class="row">
-                <div class="col-md-12">
-                    <img ng-src="http://images.tvrage.com/shows/3/{{show.showid}}.jpg" />
+                <a href="#/add/{{show.showid}}">
+                    <div class="col-md-12">
+                        <img ng-src="http://images.tvrage.com/shows/3/{{show.showid}}.jpg" />
                         <div class="listing-content">
                             <h3>{{show.name}}</h3>
                             <p>{{show.status}}</p>
                             <p>{{show.seasons}} seasons</p>
                         </div>
-      
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
-	</div>
+    </div>
 </section>

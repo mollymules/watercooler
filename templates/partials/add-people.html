@@ -1,0 +1,40 @@
+<div class="action-block-dark">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h3><span class="fa fa-plus"></span>Add people to show</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="search-listing">
+    <div class="container-fluid" ng-cloak>
+        <div class="listing">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="{{showDetail.image}}" />
+                    <div class="listing-content">
+                        <h3>{{showDetail.name}}</h3>
+                        <p>{{showDetail.status}}</p>
+                        <p>{{showDetail.seasons}} seasons</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="listing" ng-repeat="person in people">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="{{person.image}}" />
+                    <div class="listing-content">
+                        <h3>{{person.name}}</h3>
+                    </div> 
+                </div>
+                <button ng-if="person.isAdded" ng-click="addPerson(person)">-</button>
+                <button ng-if="typeof(person.isAdded) != 'undefined' && !person.isAdded" ng-click="removePerson(person)">+</button>
+            </div>
+        </div>
+        <button>Save</button>
+    </div>
+</section>
