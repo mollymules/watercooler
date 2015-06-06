@@ -1,5 +1,7 @@
 import os
 import sys
+import urllib
+from xml.etree import ElementTree as ET
 
 sys.path.insert(1, os.path.join(os.path.abspath('.'), 'lib'))
 
@@ -13,8 +15,12 @@ def index(name=None):
 
 @app.route('/search/<searchTerm>')
 def api_shows(searchTerm):
-    return 'You are searching for ' + searchTerm
+    requestURL = 'http://services.tvrage.com/feeds/search.php?show=' + searchTerm 
+    return ET.tostring(ET.parse(urllib.urlopen(requestURL)).getroot())
 
+
+
+    
 
 
 
