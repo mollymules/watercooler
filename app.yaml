@@ -16,13 +16,13 @@ libraries:
 
 handlers:
 - url: /css
-  static_dir: assets/css
+  static_dir: assets/dist/css
 
 - url: /js
   static_dir: assets/js
-  
+
 - url: /images
-  static_dir: assets/images
+  static_dir: assets/dist/images
 
 - url: /templates
   static_dir: templates/partials
