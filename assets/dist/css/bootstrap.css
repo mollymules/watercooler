@@ -6283,7 +6283,9 @@ button.close {
 .panel-body:before,
 .panel-body:after,
 .modal-footer:before,
-.modal-footer:after {
+.modal-footer:after,
+.listing:before,
+.listing:after {
   content: " ";
   display: table;
 }
@@ -6301,7 +6303,8 @@ button.close {
 .navbar-collapse:after,
 .pager:after,
 .panel-body:after,
-.modal-footer:after {
+.modal-footer:after,
+.listing:after {
   clear: both;
 }
 .center-block {
@@ -6595,7 +6598,7 @@ header ul li span.fa {
   font-size: 21px;
   cursor: pointer;
 }
-header .active h1 {
+header .inactive h1 {
   color: rgba(255, 255, 255, 0.5);
 }
 .action-block-dark {
@@ -6630,7 +6633,7 @@ header .active h1 {
   border: 0;
 }
 .featured,
-header .active {
+header .inactive {
   background: rgba(50, 50, 50, 0.6);
 }
 .listing {
@@ -6638,12 +6641,16 @@ header .active {
   border-bottom: 1px solid #3b3b3b;
   padding: 15px;
   margin: 0 -15px;
+  display: block;
 }
 .listing img {
   margin-right: 15px;
   float: left;
   width: 100px;
   height: auto;
+}
+.listing a p {
+  color: #c3c3c3;
 }
 .listing .listing-content {
   float: left;
@@ -6686,6 +6693,12 @@ header .active {
 }
 .listing .listing-content .actions span:before {
   font-size: 21px;
+}
+.add-people.listings .listing .row {
+  padding: 0 15px;
+}
+.add-people.listings .listing .listing-content {
+  width: 100%;
 }
 .add-people.listings .listing h2 {
   float: left;

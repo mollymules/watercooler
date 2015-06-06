@@ -34,13 +34,12 @@
                             </span>
                             <h2 >{{person.name}}</h3>
                             <div class="actions">
-                                <span ng-if="person.isAdded" ng-click="addPerson(person)" class="fa fa-remove">-</span>
+                                <span ng-if="person.isAdded" ng-click="addPerson(person)" class="fa fa-remove"></span>
                                 <span ng-if="typeof(person.isAdded) != 'undefined' && !person.isAdded" ng-click="removePerson(person)" class=" fa fa-plus add"></span>
                             </div>  
                         </div>                        
                     </div> 
                 </div>
-
             </div>
         </div>
     </div>

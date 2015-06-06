@@ -1,41 +1,47 @@
 <header>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 inactive">
                 <h1>Shedule</h1>
             </div>
-            <div class="col-md-6 active">
+            <div class="col-md-6">
                 <h1>Shows</h1>
             </div>
         </div>
     </div>
 </header>
 
-<div ng-init="getAllShows()" class="listings">
-    <div ng-cloak>
-        <div class="listing" ng-repeat="show in allShows">
-            <img src="{{show.image}}" title="show.name" />
-            <div class="listing-content">
-                <h2>{{show.name}}</h2>
-                <div class="people">
-                    <span ng-repeat="person in show.people">
-                        <img src="{{person.image}}" title="person.name" />
-                    </span>
+<section ng-init="getAllShows()" class="shows listings">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div ng-cloak>
+
+                <div class="listing">
+                    <img src="{{show.image}}" title="show.name" />
+                    <div class="listing-content">
+                        <h2>{{show.name}}</h2>
+                        <div class="people">
+                            <span>
+                                <img src="{{person.image}}" title="person.name" />
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
     </div>
-</div>
-
+</section>
 <div class="action-block-dark">
     <div class="container-fluid">
         <div class="row">
-            <a href="#/search">
-                <div class="col-md-12">
-                    <h3><span class="glyphicon glyphicon-plus"></span>Add a show</h3>
-                </div>
-            </a>
+            <div class="col-md-12">
+                <a href="#/search">
+                    <div class="col-md-12">
+                        <h3><span class="glyphicon glyphicon-plus"></span>Add a show</h3>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>
