@@ -24,13 +24,18 @@ def index(name=None):
     return render_template('main.html')
 
 @app.route('/search/<searchTerm>')
-def api_shows(searchTerm):
+def api_search(searchTerm):
     requestURL = 'http://services.tvrage.com/feeds/search.php?show=' + searchTerm 
     root = ET.parse(urllib.urlopen(requestURL)).getroot()
 
     return xml2json.xml2json(ET.tostring(root),make_options(True))
 
+@app.route('/show/<id>')
+def api_show(id):
+    requestURL = 'http://services.tvrage.com/feeds/full_show_info.php?sid=' + id
+    root = ET.parse(urllib.urlopen(requestURL)).getroot()
 
+    return xml2json.xml2json(ET.tostring(root),make_options(True))
 
 
 if __name__ == '__main__':
