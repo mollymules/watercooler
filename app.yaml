@@ -1,4 +1,8 @@
-application: watercooler-996
+application: watercooler-966
+version: dev
+runtime: python27
+api_version: 1
+threadsafe: true
 
 handlers:
 - url: /.*
